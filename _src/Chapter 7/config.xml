@@ -1,0 +1,16 @@
+<config>
+	<!-- other code not shown -->
+	<frontend>
+		<events>
+			<controller_action_layout_generate_xml_before>
+				<observers>
+					<[module]>
+						<type>singleton</type>
+						<class>module/observer</class><!-- replace with your module name -->
+						<method>changeRobots</method>
+					</[module]>
+				</observers>
+			</controller_action_layout_generate_xml_before>
+		</events>
+	</frontend>
+</config>

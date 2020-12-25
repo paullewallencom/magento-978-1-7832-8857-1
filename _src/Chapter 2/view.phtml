@@ -1,0 +1,22 @@
+
+<div class="product-view" itemscope itemtype="http://schema.org/Product">
+        <!-- code not shown -->
+                <h1 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        <!-- code not shown -->
+            <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+        <!-- code not shown -->
+            <?php if($_product->isAvailable()): ?>
+            	<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                	<span class="no-display" itemprop="price"><?php echo Mage::helper('core')->currency($_product->getFinalPrice()) ?></span>
+            		<link itemprop="availability" href="http://schema.org/InStock" />
+                </div>
+            <?php endif; ?>
+
+            <?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <h2><?php echo $this->__('Quick Overview') ?></h2>
+                    <div class="std" itemprop="description"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
+		<!-- code not shown -->
+</div>

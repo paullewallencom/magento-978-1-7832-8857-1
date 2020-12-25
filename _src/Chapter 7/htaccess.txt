@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+	Options +FollowSymLinks
+	RewriteEngine on
+	RewriteCond %{HTTP_HOST} !^www.mymagento.com$ [NC]
+	RewriteRule ^(.*)$ http://www.mymagento.com/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	Options +FollowSymLinks
+	RewriteEngine on
+	RewriteCond %{HTTP_HOST} !^mymagento.com$ [NC]
+	RewriteRule ^(.*)$ http://mymagento.com/$1 [R=301,L]
+</IfModule> 
+
+# Removing /index.php/ from any other URL
+RewriteCond %{THE_REQUEST} ^.*/index.php
+RewriteCond %{THE_REQUEST} !^.*/index.php/admin
+RewriteRule ^index.php/(.*)$ http://www.mymagento.com/$1 [R=301,L]
+
+# Removing our duplicate homepage
+RewriteCond %{THE_REQUEST} ^.*/index.php
+RewriteRule ^(.*)index.php$ http://www.mymagento.com/$1 [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^product_id=35$ [NC]
+RewriteRule .* http://www.mymagento.com/my-new-product.html? [R=301,L]
+
+redirect 301 /my-old-page.html http://www.mymagento.com/my-new-page.html
